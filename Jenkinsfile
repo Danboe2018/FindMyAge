@@ -6,11 +6,13 @@ pipeline {
         stage('clean') {
             steps { 
                 echo 'Cleaning..'
+                sh './gradlew clean'
             }
         }
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh './gradlew build'
             }
         }
         stage('Test') {
@@ -21,6 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                archiveArtifacts '**/*.apk'
             }
         }
     }
